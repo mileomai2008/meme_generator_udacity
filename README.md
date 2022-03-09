@@ -26,7 +26,7 @@ You can access the application at: https://localhost:5000
 
 ## Authors
 
-May Mohamed
+May Ghonimy
 
 ## Acknowledgments
 

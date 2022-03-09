@@ -6,7 +6,7 @@ from quote_engine import Ingestor, QuoteModel
 
 
 def generate_meme(path=None, body=None, author=None):
-    """ Generate a meme given a path and a quote """
+    """ Generate a meme given an path and a quote """
     img = None
     quote = None
 
@@ -18,7 +18,7 @@ def generate_meme(path=None, body=None, author=None):
 
         img = random.choice(imgs)
     else:
-        img = path[0]
+        img = path
 
     if body is None:
         quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
@@ -41,7 +41,6 @@ def generate_meme(path=None, body=None, author=None):
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser(description="welcome to meme generator.")
     parser.add_argument('--path', type=str,
                         help="path to an image file")
@@ -51,4 +50,3 @@ if __name__ == "__main__":
                         help="meme author")
     args = parser.parse_args()
     print(generate_meme(args.path, args.body, args.author))
-

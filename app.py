@@ -1,11 +1,11 @@
 import random
 import os
-from typing import List, Any
-
 import requests
 from flask import Flask, render_template, abort, request
 from meme_generator import MemeEngine
 from quote_engine import Ingestor
+
+# @TODO Import your Ingestor and MemeEngine classes
 
 app = Flask(__name__)
 
@@ -26,8 +26,11 @@ def setup():
             quotes.extend(Ingestor.parse(f))
         except Exception as error:
             print(f"Exception while getting quotes: {error}")
+
     images_path = "./_data/photos/dog/"
 
+    # TODO: Use the pythons standard library os class to find all
+    # images within the images images_path directory
     imgs = []
     for root, dirs, files in os.walk(images_path):
         try:
@@ -44,11 +47,6 @@ quotes, imgs = setup()
 @app.route('/')
 def meme_rand():
     """ Generate a random meme """
-
-    # @TODO:
-    # Use the random python standard library class to:
-    # 1. select a random image from imgs array
-    # 2. select a random quote from the quotes array
 
     img = random.choice(imgs)
     quote = random.choice(quotes)

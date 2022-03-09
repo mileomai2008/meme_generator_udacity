@@ -1,4 +1,5 @@
 import os
+import random
 from PIL import Image, ImageFont, ImageDraw
 
 
@@ -14,7 +15,7 @@ class MemeEngine:
     def make_meme(self, img_path, text, author, width=500):
         """Create a meme using the parameters image, text and author."""
         image = Image.open(img_path)
-        outfile = os.path.join(self.output_dir, "meme.jpg")
+        outfile = os.path.join(self.output_dir, f"{random.randint(0,9999999999)}.jpg")
         real_width, real_height = image.size
 
         height = int(real_height * width / real_width)

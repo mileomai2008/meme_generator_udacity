@@ -1,5 +1,6 @@
 import os
 import random
+import textwrap
 from PIL import Image, ImageFont, ImageDraw
 
 
@@ -26,7 +27,9 @@ class MemeEngine:
         author_font = ImageFont.truetype(
             "./_data/Fonts/LilitaOne-Regular.ttf", 18)
         draw = ImageDraw.Draw(image)
-        draw.text((30, 10), text,  font=quote_font, fill='black')
+        wrapper = textwrap.TextWrapper(width=40)
+        string = wrapper.fill(text=text)
+        draw.text((30, 10), string,  font=quote_font, fill='black')
         draw.text((40, 40), f"- {author}", font=author_font, fill='black')
 
         image.save(outfile, "JPEG")

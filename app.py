@@ -65,17 +65,21 @@ def meme_post():
     """ Create a user defined meme """
     img = "./temp_image.jpg"
     image_url = request.form.get("image_url")
-    img_data = requests.get(image_url, stream=True).content
-    with open(img, "wb") as f:
-        f.write(img_data)
+    try:
+        img_data = requests.get(image_url, stream=True).content
+        with open(img, "wb") as f:
+            f.write(img_data)
 
-    body = request.form.get("body", "")
-    author = request.form.get("author", "")
-    path = meme.make_meme(img, body, author)
-    print(path)
-    os.remove(img)
+        body = request.form.get("body", "")
+        author = request.form.get("author", "")
+        path = meme.make_meme(img, body, author)
+        print(path)
+        os.remove(img)
 
-    return render_template('meme.html', path=path)
+        return render_template('meme.html', path=path)
+    except Exception as e:
+        msg = f"Invalid Input: {e}"
+        return msg
 
 
 if __name__ == "__main__":

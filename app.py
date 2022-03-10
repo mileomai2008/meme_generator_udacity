@@ -75,7 +75,6 @@ def meme_post():
         path = meme.make_meme(img, body, author)
         print(path)
         os.remove(img)
-
         return render_template('meme.html', path=path)
     except Exception as e:
         msg = f"Invalid Input: {e}"
